@@ -11,11 +11,12 @@ public class UserService {
 
     @Autowired
     private UserRepository repository;
-    public  User getUser(){
-        User user =new User();
-        user.userId=1;
-        user.userName="nurullahork";
-        user.fullName="Nurullah Orak";
-        return user;
+
+    public User saveUser(User user) {
+        return repository.save(user);
+    }
+
+    public User getUser(String id) {
+        return repository.findById(Integer.parseInt(id)).orElse(null);
     }
 }

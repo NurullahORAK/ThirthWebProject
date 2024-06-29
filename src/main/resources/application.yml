@@ -3,3 +3,11 @@ server:
 spring:
   application:
     name: thirth-web
+  datasource:
+    url: jdbc:mysql://localhost:3306/thirth_web_project
+    username: root
+    password: W@2915djkq#
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
