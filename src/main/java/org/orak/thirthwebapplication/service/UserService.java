@@ -12,25 +12,27 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
-    public User saveUser(User user) {
-        return repository.save(user);
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
     public User getUser(String id) {
-        return repository.findById(Integer.parseInt(id)).orElse(null);
+        return userRepository.findById(Integer.parseInt(id)).orElse(null);
     }
 
-    public User deleteUser(String id) {
-        return repository.findById(Integer.parseInt(id)).orElse(null);
+    public void deleteUser(String id) {
+        userRepository.deleteById(Integer.parseInt(id));
     }
 
     public List<User> getAllUsers() {
-        return repository.findAll();
+        return userRepository.findAll();
     }
 
-    public User updateUser(User user) {
-        return repository.findById(Integer.parseInt(String.valueOf(user.userId))).orElse(null);
+    public User updateUser(String id, User user) {
+        User newUser = userRepository.findById(Integer.parseInt(id)).orElse(null);
+        newUser.setUserName(user.getUserName());
+        return userRepository.save(newUser);
     }
 }
