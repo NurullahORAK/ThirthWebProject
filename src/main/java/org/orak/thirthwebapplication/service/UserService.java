@@ -31,8 +31,12 @@ public class UserService {
     }
 
     public User updateUser(String id, User user) {
-        User newUser = userRepository.findById(Integer.parseInt(id)).orElse(null);
-        newUser.setUserName(user.getUserName());
-        return userRepository.save(newUser);
+        User existUser = userRepository.findByUserId(Integer.parseInt(id));
+        existUser.userName = user.userName;
+        existUser.fullName = user.fullName;
+        existUser.birthPlace = user.birthPlace;
+        existUser.birthDate = user.birthDate;
+        existUser.tckn = user.tckn;
+        return userRepository.save(existUser);
     }
 }

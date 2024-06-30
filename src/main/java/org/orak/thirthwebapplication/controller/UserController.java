@@ -14,6 +14,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //C create olustur
+    //R READ oku
+    //U UPDATE guncelle
+    //D Delete sil
+
+    //Rcihardson Maturity Model idom potency
     @GetMapping("/{id}")
     public User getUser(@PathVariable(name = "id") String id) {
         return userService.getUser(id);
@@ -35,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable (name= "id") String id , @RequestBody User user) {
-        return userService.updateUser(id,user);
+    public User updateUser(@PathVariable(name = "id") String id, @RequestBody User user) {
+        return userService.updateUser(id, user);
     }
 }
