@@ -7,30 +7,31 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service    // Bu anotasyon, bu sınıfın bir servis bileşeni olduğunu belirtir.
 
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepository;      // UserRepository, kullanıcı verilerini veritabanından almak için kullanılır.
 
-    public User createUser(User user) {
+    public User create(User user) {
         return userRepository.save(user);
     }
 
-    public User getUser(String id) {
-        return userRepository.findById(Integer.parseInt(id)).orElse(null);
+    public User get(String id) {
+        return userRepository.findByUserId(Integer.parseInt(id));
     }
 
-    public void deleteUser(String id) {
+    public void delete(String id) {
         userRepository.deleteById(Integer.parseInt(id));
     }
 
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         return userRepository.findAll();
     }
 
-    public User updateUser(String id, User user) {
+    public User update(String id, User user) {    //id parametresi bir kullanıcıyı tanımlayan bir String ve user parametresi güncellenmiş kullanıcı bilgilerini içeren bir User nesnesidir.
+                                                      //Metod, güncellenmiş User nesnesini geri döndürür.
         User existUser = userRepository.findByUserId(Integer.parseInt(id));
         existUser.userName = user.userName;
         existUser.fullName = user.fullName;

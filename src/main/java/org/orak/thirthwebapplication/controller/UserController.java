@@ -7,41 +7,42 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController // Bu anotasyon, bu sınıfın bir RESTful web servis denetleyicisi olduğunu belirtir.
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserService userService;       // UserService sınıfı otomatik olarak enjekte edilir (dependency injection).
 
     //C create olustur
     //R READ oku
     //U UPDATE guncelle
     //D Delete sil
 
-    //Rcihardson Maturity Model idom potency
-    @GetMapping("/{id}")
-    public User getUser(@PathVariable(name = "id") String id) {
-        return userService.getUser(id);
+    //Rcihardson Maturity Model idompotency
+
+    @GetMapping
+    public User get(@RequestParam(value = "id")String id){
+        return userService.get(id);
     }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+        return userService.create(user);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable(name = "id") String id) {
-        userService.deleteUser(id);
+        userService.delete(id);
     }
 
-    @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
-    }
+//    @GetMapping
+//    public List<User> getAllUsers() {
+//        return userService.getAll();
+//    }
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable(name = "id") String id, @RequestBody User user) {
-        return userService.updateUser(id, user);
+        return userService.update(id, user);
     }
 }
