@@ -40,4 +40,6 @@ public class UserService {
         existUser.tckn = user.tckn;
         return userRepository.save(existUser);
     }
+
+
 }
